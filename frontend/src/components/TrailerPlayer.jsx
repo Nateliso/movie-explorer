@@ -1,9 +1,9 @@
 function TrailerPlayer({ videoKey }) {
-    return (
-      <div>
+  return (
+    <div className="trailer-player">
+      <div className="trailer-player-iframe-wrapper">
         <iframe
-          width="300"
-          height="169"
+          className="trailer-player-iframe"
           src={`https://www.youtube.com/embed/${videoKey}`}
           title="Movie Trailer"
           frameBorder="0"
@@ -11,7 +11,8 @@ function TrailerPlayer({ videoKey }) {
           allowFullScreen
         ></iframe>
       </div>
-    );
-  }
-  
-  export default TrailerPlayer;
+    </div>
+  );
+}
+
+export default TrailerPlayer;
