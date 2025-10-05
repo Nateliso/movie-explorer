@@ -3,10 +3,10 @@
 A full-stack web application for browsing, searching, and managing a personalized movie watchlist with ratings, built with React, Vite, Node.js, Express, and PostgreSQL. Users can search for movies using The Movie Database (TMDB) API, add/remove movies from their watchlist, rate movies, and watch trailers.
 
 **Login/Signup Page**
-![Login Or Signup](./public/images/Screenshot Login or Signup.png)
+![Login Or Signup](./public/images/screenshot-login-signup.png)
 
 **Home Page**
-![Home Page](./public/images/Screenshot Homepage.png)
+![Home Page](./public/images/screenshot-homepage.png)
 
 ## Features
 - **Search Movies**: Search movies via TMDB API with a responsive search bar.
