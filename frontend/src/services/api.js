@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "https://movie-explorer-6q65.onrender.com"; // Backend URL
+const API_URL = "https://movie-explorer-6q65.onrender.com/api"; // Backend URL
 
 axios.defaults.withCredentials = true;
 
