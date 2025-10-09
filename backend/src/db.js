@@ -1,15 +1,20 @@
 const { Pool } = require('pg');
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
+
+const caPath = path.resolve(__dirname, './certs/ca.pem'); // adjust filename if different
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    ca: process.env.CA_CERT,
+    ca: fs.readFileSync(caPath).toString(),
+    rejectUnauthorized: true,
   },
 });
 
-pool.on('connect', () => {
-  console.log('✅ Connected securely to Aiven PostgreSQL');
-});
+pool.connect()
+  .then(() => console.log('Connected to Aiven database'))
+  .catch(err => console.error('Database connection error:', err));
 
 module.exports = pool;

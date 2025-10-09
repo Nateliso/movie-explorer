@@ -36,18 +36,22 @@ app.use(
       tableName: 'session',
       createTableIfMissing: true, // Auto-create table if missing
     }),
-    secret: process.env.SECRET_KEY,
+    secret: process.env.SECRET_KEY || 'dev_secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false, // Set to true in production with HTTPS
+      secure: process.env.NODE_ENV === 'production', // Set to true in production with HTTPS
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      sameSite: 'lax',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     },
   })
 );
 
+app.get('/api/debug/session', (req, res) => {
+  console.log('Session data:', req.session);
+  res.json(req.session);
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/watchlist', watchlistRoutes);
