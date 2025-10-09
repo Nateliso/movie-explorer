@@ -23,3 +23,5 @@ logs/
 
 # Misc
 .DS_Store
+
+certs/ca.pem
