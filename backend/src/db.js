@@ -1,14 +1,10 @@
 const { Pool } = require('pg');
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config();
-
-const caPath = path.resolve(__dirname, './certs/ca.pem'); // adjust filename if different
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    ca: fs.readFileSync(caPath).toString(),
+    ca: fs.process.env.CA_CERT,
     rejectUnauthorized: true,
   },
 });
