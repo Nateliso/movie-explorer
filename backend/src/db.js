@@ -4,7 +4,7 @@ require('dotenv').config();
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    ca: fs.process.env.CA_CERT,
+    ca: process.env.CA_CERT,
     rejectUnauthorized: true,
   },
 });
