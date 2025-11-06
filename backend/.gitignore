@@ -24,4 +24,6 @@ logs/
 # Misc
 .DS_Store
 
-certs/ca.pem
+backend/src/certs/
+
+backend/.gitignore
