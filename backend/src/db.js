@@ -1,16 +1,22 @@
 const { Pool } = require("pg");
+const fs = require("fs");
+const path = require("path");
 require("dotenv").config();
 
 const isProduction = process.env.NODE_ENV === "production";
 
+const caPath = path.join(__dirname, "certs", "ca.pem");
+
+const sslConfig = isProduction
+  ? {
+      rejectUnauthorized: true,
+      ca: fs.readFileSync(caPath).toString(),
+    }
+  : { rejectUnauthorized: false };
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: isProduction
-    ? {
-        rejectUnauthorized: true,
-        ca: Buffer.from(process.env.CA_CERT), // ← CRITICAL: Convert to Buffer
-      }
-    : { rejectUnauthorized: false },
+  ssl: sslConfig,
 });
 
 pool.connect()
